@@ -28,7 +28,16 @@ class SQLiteUtil(object):
         db_conn.commit()
         db_conn.close()
 
+    @staticmethod
+    def selectAll():
+        db_conn = sqlite3.connect('../data/candle.db')
+        cursor = db_conn.cursor()
+        rows = cursor.execute("SELECT * FROM tb_candle")
+        for row in rows:
+            print row
+
 
 if __name__ == '__main__':
-    candle = Candle('2222', 1, 1, 1, 1)
-    SQLiteUtil.insert(candle)
+    # candle = Candle('2222', 1, 1, 1, 1)
+    # SQLiteUtil.insert(candle)
+    SQLiteUtil.selectAll()
