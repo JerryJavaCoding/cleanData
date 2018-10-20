@@ -4,7 +4,7 @@
 
 import os
 
-import tkinter
+from Tkinter import *
 
 from data_handler import Cleaner
 from src.data_show import DataShow
@@ -46,17 +46,17 @@ def scan_file():
     change_progress("完成！")
 
 
-root = tkinter.Tk()
+root = Tk()
 root.title('数据可视化')
 root.geometry('500x200')
-tkinter.Label(root, text='目录：').place(x=100, y=5)
-text_input = tkinter.Entry(root)
+Label(root, text='目录：').place(x=100, y=5)
+text_input = Entry(root)
 text_input.pack()
-btn1 = tkinter.Button(root, text='开始扫描目录', font=("宋体", 10, 'bold'), width=10, height=2, command=scan_file)
+btn1 = Button(root, text='开始扫描目录', font=("宋体", 10, 'bold'), width=10, height=2, command=scan_file)
 
 btn1.pack()
-progress_txt = tkinter.StringVar()
-progress = tkinter.Entry(root, textvariable=progress_txt, bd=0)
+progress_txt = StringVar()
+progress = Entry(root, textvariable=progress_txt, bd=0)
 progress['state'] = 'readonly'
 
 progress.pack()
