@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from pyecharts import Kline
 
-from src.repository import SQLiteUtil
+from repository import SQLiteUtil
 
 
 class DataShow(object):

@@ -5,10 +5,9 @@
 import os
 
 from Tkinter import *
-
 from data_handler import Cleaner
-from src.data_show import DataShow
-from src.repository import SQLiteUtil
+from data_show import DataShow
+from repository import SQLiteUtil
 
 
 def change_progress(txt):
@@ -18,32 +17,35 @@ def change_progress(txt):
 
 
 def scan_file():
-    change_progress("正在扫描...")
-    root_dir = text_input.get()
-    print "dir is:" + root_dir
-    if root_dir is None:
-        return
-    # root_dir = "/Users/jerryyu/Downloads/橡胶价格数据包"
-    sub_dirs = os.listdir(root_dir)
-    sub_dirs.sort()
-    current_time = 0
-    change_progress("正在清洗...")
+    try:
+        change_progress("正在扫描...")
+        root_dir = text_input.get()
+        print "dir is:" + root_dir
+        if root_dir is None:
+            return
+        # root_dir = "/Users/jerryyu/Downloads/橡胶价格数据包"
+        sub_dirs = os.listdir(root_dir)
+        sub_dirs.sort()
+        current_time = 0
+        change_progress("正在清洗...")
 
-    for sub_dir in sub_dirs:
-        if not sub_dir.startswith("1"):
-            continue
-        files = os.listdir(root_dir + "/" + sub_dir)
-        files.sort()
-        for file in files:
-            if not os.path.isdir(file):
-                f = open(root_dir + "/" + sub_dir + "/" + file)
-                candle = Cleaner.clean(f)
-                SQLiteUtil.insert(candle, current_time)
-                current_time = current_time + 1
-    change_progress("创建视图...")
-    DataShow.create_view()
-    SQLiteUtil.remove_all()
-    change_progress("完成！")
+        for sub_dir in sub_dirs:
+            if not sub_dir.startswith("1"):
+                continue
+            files = os.listdir(root_dir + "/" + sub_dir)
+            files.sort()
+            for file in files:
+                if not os.path.isdir(file):
+                    f = open(root_dir + "/" + sub_dir + "/" + file)
+                    candle = Cleaner.clean(f)
+                    SQLiteUtil.insert(candle, current_time)
+                    current_time = current_time + 1
+        change_progress("创建视图中...")
+        DataShow.create_view()
+        SQLiteUtil.remove_all()
+        change_progress("完成！")
+    except:
+        change_progress("执行失败！！！")
 
 
 root = Tk()

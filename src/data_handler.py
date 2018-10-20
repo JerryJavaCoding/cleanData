@@ -1,6 +1,6 @@
 # coding=utf-8
 import csv
-from src import Candle
+import Candle
 
 
 class Cleaner(object):
