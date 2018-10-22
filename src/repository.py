@@ -38,7 +38,7 @@ class SQLiteUtil(object):
     def select_all():
         db_conn = sqlite3.connect('../data/candle.db')
         cursor = db_conn.cursor()
-        rows = cursor.execute("SELECT * FROM tb_candle")
+        rows = cursor.execute("SELECT date_str,min_price,max_price,first_price,last_price FROM tb_candle")
         # db_conn.close()
         return rows
 

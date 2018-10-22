@@ -2,6 +2,7 @@
 # coding=utf-8
 
 
+from __future__ import print_function
 import os
 
 from Tkinter import *
@@ -18,9 +19,10 @@ def change_progress(txt):
 
 def scan_file():
     try:
+        # 每次都清理db，防止中途关闭
+        SQLiteUtil.remove_all()
         change_progress("正在扫描...")
         root_dir = text_input.get()
-        print "dir is:" + root_dir
         if root_dir is None:
             return
         # root_dir = "/Users/jerryyu/Downloads/橡胶价格数据包"

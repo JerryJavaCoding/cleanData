@@ -15,7 +15,7 @@ class Cleaner(object):
         candle.max_price = 3
         candle.min_price = 99999
 
-        price_index = 7
+        price_index = 3
         current_price = 0
         for item in reader:
             # 忽略第一行

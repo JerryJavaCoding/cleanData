@@ -1,5 +1,8 @@
 # coding=utf-8
 from __future__ import unicode_literals
+
+import os
+
 from pyecharts import Kline
 
 from repository import SQLiteUtil
@@ -14,8 +17,8 @@ class DataShow(object):
         rows = SQLiteUtil.select_all()
         down_flag = []
         for row in rows:
-            down_flag.append(row[1])
-            v1.append([row[4], row[5], row[2], row[3]])
+            down_flag.append(row[0])
+            v1.append([row[3], row[4], row[1], row[2]])
         kline.add(
             "日K",
             down_flag,
@@ -56,3 +59,7 @@ class DataShow(object):
             is_datazoom_show=True,
         )
         kline.render(path="../view/moon.html")
+
+
+if __name__ == '__main__':
+    DataShow.create_view()
