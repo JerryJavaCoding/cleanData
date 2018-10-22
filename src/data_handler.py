@@ -12,7 +12,7 @@ class Cleaner(object):
         date = csv_file.name.split("_", 2)[1].replace(".csv", "", 1)
         candle = Candle.Candle(date=date)
         # candle.date()
-        candle.max_price = 0
+        candle.max_price = 3
         candle.min_price = 99999
 
         price_index = 7
